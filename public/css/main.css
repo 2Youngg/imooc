@@ -1,0 +1,49 @@
+.navbar-brand{
+    width:200px;
+}
+.logo{
+    float: left;
+    margin-top: -15px;
+}
+footer{
+    text-align: center;
+}
+
+
+#movie .thumbnail > img{
+    height: 200px;
+    !important;
+}
+
+#movie .caption p{
+    font-size: 11px;
+
+}
+#movie .btn{
+    font-size: 11px;
+}
+
+#now .thumbnail > img{
+    height: 200px;
+!important;
+}
+
+#now .caption p{
+    font-size: 11px;
+
+}
+#now .btn{
+    font-size: 11px;
+}
+#will .thumbnail > img{
+    height: 200px;
+!important;
+}
+
+#will .caption p{
+    font-size: 11px;
+
+}
+#will .btn{
+    font-size: 11px;
+}

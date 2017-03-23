@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .page-header
+        h1 TOP250
+      .row(id="movie")
+
+      nav(aria-label="Page navigation")
+        ul.pagination
+          li
+            a(href="#" aria-label="Previous")
+              span(aria-hidden="true") &laquo;
+          li.active
+            a(href="#") 1
+          li
+            a(href="#") 2
+          li
+            a(href="#") 3
+          li
+            a(href="#") 4
+          li
+            a(href="#") 5
+          li
+            a(href="#" aria-label="Next")
+              span(aria-hidden="true") &raquo;
+
+
+  script(src="/js/top.js")

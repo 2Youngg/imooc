@@ -1,0 +1,35 @@
+.container
+	.row
+		nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					.button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+						.span.sr-only Toggle navigation
+						.span.icon-bar
+						.span.icon-bar
+						.span.icon-bar
+					a.navbar-brand(href="#")
+						.img.logo(src="/images/logo.png" height="40" width="40")
+						.span 电影网
+				.collapse.navbar-collapse(id="bs-example-navbar-collapse-1")
+					ul.nav.navbar-nav
+						li
+							a(href="/") 首页
+							span.sr-only current
+						li
+							a(href="/top") TOP250
+						li
+							a(href="#") 撰写影评
+						li
+							a(href="#") 我的影评
+					form.navbar-form.navbar-left
+						.form-group
+							input(type="text" class="form-control" placeholder="你感兴趣的电影")
+
+							button(type="submit" class="btn btn-default") 搜索
+
+					ul.nav.navbar-nav.navbar-right
+						li
+							a(href="#") 注册
+						li
+							a(href="#") 登录
