@@ -47,3 +47,17 @@ footer{
 #will .btn{
     font-size: 11px;
 }
+.carousel-caption {
+    !important;
+    left: 55%;
+    right:5%;
+}
+.carousel-caption h3{
+!important;
+    padding-bottom: 10px;
+    color: #333;
+}
+.carousel-caption p{
+!important;
+    color: #333;
+}

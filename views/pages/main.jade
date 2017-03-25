@@ -3,10 +3,72 @@ extends ../layout
 block content
     .container
         .row
-            .page-header
-                h1 正在热映
-            .row(id="now")
-            .page-header
-                h1 即将上映
-            .row(id="will")
+            .col-md-8
+                .page-header
+                    h2 正在热映
+                    .carousel.slide(id="carousel-example-generic" data-ride="carousel")
+                        ol.carousel-indicators
+                            li(data-target="#carousel-example-generic" data-slide-to="0" class="active")
+                            li(data-target="#carousel-example-generic" data-slide-to="1")
+                            li(data-target="#carousel-example-generic" data-slide-to="2")
+                        .carousel-inner(role="listbox")
+                            .item.active
+                                img(src="/images/slide1.jpg" alt="...")
+                                .carousel-caption
+                                    h3 《美女与野兽》艾玛与大表哥服饰大揭秘
+                                    p 《美女与野兽》艾玛与大表哥的华服美哭！一套又一套直指奥斯卡最佳服装设计
+                            .item
+                                img(src="/images/slide2.jpg" alt="...")
+                                .carousel-caption
+                                    h3 2017第七届北京国际电影节影片大全
+                                    p 第七届北京国际电影节将于2017年4月16日至4月23日举行，500部中外佳片看不停
+                            .item
+                                img(src="/images/slide3.jpg" alt="...")
+                                .carousel-caption
+                                    h3 《四重奏》：人生尽是没想到
+                                    p 年度高分日剧完结，四重奏的人生重启。
+                        a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
+                            span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
+                            span(class="sr-only") Previous
+                        a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
+                            span(class="glyphicon glyphicon-chevron-right" aria-hidden="true")
+                            span(class="sr-only") Next
+            .col-md-1
+            .col-md-3
+                .page-header
+                    h2 本周口碑榜
+                    table.table
+                            thead
+                                tr
+                                    th 排名
+                                    th 片名
+                            tbody
+                                tr
+                                    th(scope="row") 1
+                                    td 看不见的客人
+                                tr
+                                    th(scope="row") 2
+                                    td 斯隆女士
+                                tr
+                                    th(scope="row") 3
+                                    td 美女与野兽
+                                tr
+                                    th(scope="row") 4
+                                    td 契克
+                                tr
+                                    th(scope="row") 5
+                                    td 分裂
+                                tr
+                                    th(scope="row") 6
+                                    td 比尔
+                                tr
+                                    th(scope="row") 7
+                                    td 八月
+
+        .page-header
+            h2 正在热映
+        .row(id="now")
+        .page-header
+            h2 即将上映
+        .row(id="will")
     script(src="/js/main.js")
