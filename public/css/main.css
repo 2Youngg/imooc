@@ -5,8 +5,12 @@
     float: left;
     margin-top: -15px;
 }
-footer{
+.footer{
+    margin-top: 50px;
     text-align: center;
+}
+.tou{
+    margin-top: 60px;
 }
 
 
@@ -69,4 +73,7 @@ footer{
 }
 .movieContent img{
     width: 100%;
+}
+.text_right{
+    float: right;
 }
