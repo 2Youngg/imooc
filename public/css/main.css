@@ -61,3 +61,12 @@ footer{
 !important;
     color: #333;
 }
+
+
+/*具体电影页*/
+.movieContent {
+    margin-top: 20px;
+}
+.movieContent img{
+    width: 100%;
+}

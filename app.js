@@ -38,17 +38,29 @@ app.get('/', function (req, res) {
     });
   });
 });
-//最近热映recent
+//TOP250
 app.get('/top', function (req, res) {
-  Movie.fetch(function (err, movies) {
-    if (err) {
-        console.log(err)
-    }
-    res.render('top', {
-        title: 'TOP250',
-        movies: movies
+    Movie.fetch(function (err, movies) {
+        if (err) {
+            console.log(err)
+        }
+        res.render('top', {
+            title: 'TOP250',
+            movies: movies
+        });
     });
-  });
+});
+//具体电影
+app.get('/movie', function (req, res) {
+    Movie.fetch(function (err, movies) {
+        if (err) {
+            console.log(err)
+        }
+        res.render('movie', {
+            title: 'beauty',
+            movies: movies
+        });
+    });
 });
 //detail
 app.get('/movie/:id', function (req, res) {
