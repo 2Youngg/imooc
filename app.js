@@ -4,11 +4,12 @@ var bodyParser = require('body-parser');
 var _ = require('underscore');
 var mongoose = require('mongoose');
 var Movie = require('./models/movie.js');
+var Comment =require('./models/comment.js');
 var port = process.env.PORT || 3000;
 var app = express();
 
 
-mongoose.connect('mongodb://127.0.0.1/imooc');
+mongoose.connect('mongodb://localhost/imooc');
 mongoose.connection.on('connected', function () {
   console.log('Connection success!');
 });
@@ -38,7 +39,7 @@ app.get('/', function (req, res) {
     });
   });
 });
-//TOP250
+//top
 app.get('/top', function (req, res) {
     Movie.fetch(function (err, movies) {
         if (err) {
@@ -46,18 +47,6 @@ app.get('/top', function (req, res) {
         }
         res.render('top', {
             title: 'TOP250',
-            movies: movies
-        });
-    });
-});
-//具体电影
-app.get('/movie', function (req, res) {
-    Movie.fetch(function (err, movies) {
-        if (err) {
-            console.log(err)
-        }
-        res.render('movie', {
-            title: 'beauty',
             movies: movies
         });
     });
@@ -74,8 +63,8 @@ app.get('/movie/:id', function (req, res) {
       movie: movie
     });
   });
-});
 
+});
 //admin
 app.get('/admin/movie', function (req, res) {
   res.render('admin', {
@@ -98,12 +87,13 @@ app.get('/admin/update/:id', function (req, res) {
     Movie.findById(id, function (err, movie) {
       res.render('admin', {
         title: '后台更新',
-        movie: movie
+        movie: movie,
       });
     });
   }
 });
-//admin post movie
+
+
 app.post('/admin/movie/new', function (req, res) {
   var id = req.body.movie._id;
   var movieObj = req.body.movie;
@@ -130,8 +120,9 @@ app.post('/admin/movie/new', function (req, res) {
       year: movieObj.year,
       poster: movieObj.poster,
       flash: movieObj.flash,
-      summary: movieObj.summary
-    });
+      summary: movieObj.summary,
+
+    })
     _movie.save(function (err, movie) {
       if (err) {
         console.log(err);
@@ -139,9 +130,7 @@ app.post('/admin/movie/new', function (req, res) {
       res.redirect('/movie/' + movie._id)
     })
   }
-});
-
-
+})
 
 //list
 app.get('/admin/list', function (req, res) {
@@ -158,7 +147,7 @@ app.get('/admin/list', function (req, res) {
 
 //delete
 app.delete('/admin/list', function (req, res) {
-  var id = req.query.id
+  var id = req.query.id;
   if (id) {
     Movie.remove({
       _id: id
@@ -172,4 +161,112 @@ app.delete('/admin/list', function (req, res) {
       }
     })
   }
+})
+
+
+
+
+//admincomment
+app.get('/admincomment/comment', function (req, res) {
+    res.render('admincomment', {
+        title: '撰写影评',
+        comment: {
+            title: '',
+            commentname: '',
+            mark: '',
+            content: '',
+            poster: ''
+        }
+    });
+});
+app.get('/admincomment/update/:id', function (req, res) {
+    var id = req.params.id;
+    if (id) {
+        Comment.findById(id, function (err, comment) {
+            res.render('admincomment', {
+                title: '后台更新',
+                comment: comment,
+            });
+        });
+    }
+});
+
+
+app.post('/admincomment/comment/new', function (req, res) {
+    var id = req.body.comment._id;
+    var commentObj = req.body.comment;
+    var _comment;
+    if (id !== 'undefined') {
+        Comment.findById(id, function (err, comment) {
+            if (err) {
+                console.log(err);
+            }
+            _comment = _.extend(comment, commentObj);
+            _comment.save(function (err, comment) {
+                if (err) {
+                    console.log(err)
+                }
+                res.redirect('/comment/' + comment._id)
+            })
+        })
+    } else {
+        _comment = new Comment({
+            title: commentObj.title,
+            commentname: commentObj.commentname,
+            mark: commentObj.mark,
+            content: commentObj.content,
+            poster: commentObj.poster
+        });
+        _comment.save(function (err, comment) {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/comment/' + comment._id)
+        })
+    }
+});
+
+//listcomment
+app.get('/admincomment/listcomment', function (req, res) {
+    Comment.fetch(function (err, comments) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('listcomment', {
+            title: '列表',
+            comments: comments
+        });
+    })
+});
+
+//delete
+app.delete('/admincomment/listcomment', function (req, res) {
+    var id = req.query.id;
+    if (id) {
+        Comment.remove({
+            _id: id
+        }, function (err, comment) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json({
+                    success: 1
+                })
+            }
+        })
+    }
+});
+
+//detailcomment
+app.get('/comment/:id', function (req, res) {
+    var id = req.params.id;
+    Comment.findById(id, function (err, comment) {
+        if (err) {
+            console.log(err)
+        }
+        res.render('detailcomment', {
+            title: '详情页' + comment.title,
+            comment: comment
+        });
+    });
 });
