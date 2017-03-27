@@ -77,3 +77,10 @@
 .text_right{
     float: right;
 }
+
+
+
+/*登陆注册*/
+.tab-content{
+    margin-top: 20px;
+}

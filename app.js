@@ -39,6 +39,20 @@ app.get('/', function (req, res) {
     });
   });
 });
+//movie
+app.get('/movie', function (req, res) {
+    Movie.fetch(function (err, movies) {
+        if (err) {
+            console.log(err)
+        }
+        res.render('movie', {
+            title: '电影详情页',
+            movies: movies
+        });
+    });
+});
+
+
 //top
 app.get('/top', function (req, res) {
     Movie.fetch(function (err, movies) {
@@ -174,8 +188,7 @@ app.get('/admincomment/comment', function (req, res) {
             title: '',
             commentname: '',
             mark: '',
-            content: '',
-            poster: ''
+            content: ''
         }
     });
 });
@@ -215,7 +228,6 @@ app.post('/admincomment/comment/new', function (req, res) {
             commentname: commentObj.commentname,
             mark: commentObj.mark,
             content: commentObj.content,
-            poster: commentObj.poster
         });
         _comment.save(function (err, comment) {
             if (err) {
